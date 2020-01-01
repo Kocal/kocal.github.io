@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: Hugo Alliaume
+subtitle: 'My personal blog'
 description: ''
 keywords:
-author: John Doe
+author: Hugo Alliaume
 language: en
-timezone: ''
+timezone: 'Europe/Paris'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://hugo.alliau.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
