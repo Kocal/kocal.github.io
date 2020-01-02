@@ -1,0 +1,17 @@
+{
+  "name": "@kocal/blog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "dependencies": {
+    "@vuepress/plugin-blog": "^1.7.0",
+    "@vuepress/plugin-medium-zoom": "^1.2.0",
+    "@vuepress/plugin-nprogress": "^1.2.0",
+    "@vuepress/plugin-search": "^1.2.0",
+    "date-fns": "^2.8.1",
+    "vuepress": "^1.2.0"
+  }
+}
