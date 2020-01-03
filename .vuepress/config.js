@@ -16,6 +16,7 @@ module.exports = {
         ],
         sitemap: {
           hostname: 'https://hugo.alliau.me',
+          exclude: ['/404.html', '/post/']
         },
       },
     ],
