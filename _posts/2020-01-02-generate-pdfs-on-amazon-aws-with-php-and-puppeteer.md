@@ -388,6 +388,8 @@ services:
 
 This is an example of how to use Browsershot and the `ChromiumFactory` inside a Message handler (specific to Symfony Messenger Component), but you can use them anywhere you want.
 
+I've used [`league/flysystem-bundle`](https://github.com/thephpleague/flysystem-bundle) and configured a [Scaleway filesystem adapter](https://github.com/thephpleague/flysystem-bundle/blob/master/docs/2-cloud-storage-providers.md#scaleway-object-storage) in order to save my PDF on Scaleway.
+
 ```php
 <?php declare(strict_types=1);
 
@@ -449,3 +451,5 @@ class GeneratePdfMessageHandler implements MessageHandlerInterface, LoggerAwareI
     }
 }
 ```
+
+And voilà! When executing this code, a PDF should have been generated with Browsershot and Puppeteer and be saved on Scaleway.
