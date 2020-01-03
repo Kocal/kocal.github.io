@@ -4,7 +4,7 @@
       <a :href="post.path">{{ post.title }}</a>
     </header>
 
-    <PostTags v-if="post.frontmatter.tag.length > 0" :tags="post.frontmatter.tag" />
+    <PostTags :tags="post.frontmatter.tags || []" />
 
     <footer class="post-footer">
       Posted on

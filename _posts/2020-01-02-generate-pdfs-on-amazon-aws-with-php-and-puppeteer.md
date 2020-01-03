@@ -1,11 +1,15 @@
 ---
 title: Generate PDFs on Amazon AWS with PHP and Puppeteer
-tag:
+tags:
   - php
   - node.js
   - aws
   - chrome
 ---
+
+# {{ $page.frontmatter.title }}
+
+<PostTags :tags="$page.frontmatter.tags"/>
 
 ## Some context
 
@@ -331,15 +335,13 @@ class ChromiumFactory
     protected function inflate(string $filename): void
     {
         $extension = '.br';
+        $extensionLength = strlen($extension);
 
-        if (substr($filename, -3) !== $extension) {
-            throw new \InvalidArgumentException(sprintf(
-                '%s can only process a Brotli file',
-                __METHOD__
-            ));
+        if (substr($filename, -$extensionLength) !== $extension) {
+            throw new \InvalidArgumentException('Not a brotli file.');
         }
 
-        $outputFilename = $this->tmpDir.'/'.substr($filename, 0, -strlen($extension));
+        $outputFilename = $this->tmpDir.'/'.substr($filename, 0, -$extensionLength);
         @mkdir(dirname($outputFilename), 0777, true);
 
         // Inflate file only if output file does not exist

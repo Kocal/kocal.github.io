@@ -24,11 +24,12 @@ export default {
   margin-right: 4px
 
   a
-    background-color: $accentColor
+    padding: 3px 8px
     border-radius: 25px
+    background-color: $accentColor
     color: #fff
     font-size: .8rem
-    padding: 3px 8px
+    text-decoration: none !important
 
     &:hover
       background-color: darken($accentColor, 10%)

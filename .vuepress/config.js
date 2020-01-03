@@ -12,21 +12,6 @@ module.exports = {
             id: 'post',
             dirname: '_posts',
             itemPermalink: '/:year/:month/:day/:slug',
-            pagination: {
-              lengthPerPage: 5,
-            },
-          },
-        ],
-        frontmatters: [
-          {
-            id: 'tag',
-            keys: ['tag', 'tags'],
-            path: '/tag/',
-            // layout: 'Tag',  defaults to `FrontmatterKey.vue`
-            frontmatter: { title: 'Tag' },
-            pagination: {
-              lengthPerPage: 5,
-            },
           },
         ],
         sitemap: {
