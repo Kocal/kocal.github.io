@@ -2,4 +2,4 @@
 home: true
 ---
 
-<PostList />
+<PostList :posts="$posts" />

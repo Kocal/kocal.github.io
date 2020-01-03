@@ -30,7 +30,7 @@ module.exports = {
     editLinks: true,
     lastConfig: 'Last updated',
     nav: [
-      { text: 'Tags', link: '/tag/' },
+      { text: 'Tags', link: '/tags/' },
       { text: 'Twitter', link: 'https://twitter.com/HugoAlliaume' },
     ],
   },

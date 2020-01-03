@@ -1,14 +1,14 @@
 <template>
   <article class="post">
     <header class="post-header">
-      <a :href="post.path">{{ post.title }}</a>
+      <router-link :to="post.path">{{ post.title }}</router-link>
     </header>
 
     <PostTags :tags="post.frontmatter.tags || []" />
 
     <footer class="post-footer">
       Posted on
-      <time :datetime="createdAt | date('Y-MM-dd')" class="post-createdAt">{{ createdAt | date('PPPP') }}</time>
+      <time :datetime="post.createdAt | date('Y-MM-dd')" class="post-createdAt">{{ post.createdAt | date('PPPP') }}</time>
     </footer>
   </article>
 </template>
@@ -21,16 +21,10 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      createdAt: null,
-    };
-  },
-  created() {
-    const [, year, month, day] = this.post.path.split('/');
-
-    this.createdAt = new Date(year, month - 1, day);
+    displayTags: {
+      type: Boolean,
+      default: true
+    }
   },
 };
 </script>

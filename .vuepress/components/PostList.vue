@@ -1,15 +1,23 @@
 <template>
   <div class="post-list">
-    <PostListItem v-for="post in posts" :post="post" />
+    <PostListItem v-for="post in postsSortedByCreatedAtDesc" :post="post" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'PostList',
+  props: {
+    posts: {
+      type: Array,
+      required: true,
+    },
+  },
   computed: {
-    posts() {
-      return this.$site.pages.filter(page => page.id === 'post').reverse();
+    postsSortedByCreatedAtDesc() {
+      return [...this.$posts].sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
     },
   },
 };
