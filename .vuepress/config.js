@@ -34,6 +34,7 @@ module.exports = {
         },
       },
     ],
+    seo: true
   ],
   themeConfig: {
     repo: 'Kocal/blog',
