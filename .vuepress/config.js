@@ -34,7 +34,11 @@ module.exports = {
         },
       },
     ],
-    seo: true
+    'seo',
+    ['social-share', {
+      networks: ['twitter', 'facebook', 'reddit'],
+      twitterUser: 'HugoAlliaume',
+    }]
   ],
   themeConfig: {
     repo: 'Kocal/blog',
