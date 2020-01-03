@@ -1,9 +1,9 @@
 <template>
-        <span class="post-tag">
-        <a :href="'/tag/' + tag">
-          #{{ tag }}
-        </a>
-      </span>
+  <span class="post-tag">
+    <router-link :to="'/tags.html#' + tag">
+      #{{ tag }}
+    </router-link>
+  </span>
 </template>
 
 <script>
