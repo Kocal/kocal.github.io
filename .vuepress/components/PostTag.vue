@@ -1,6 +1,6 @@
 <template>
   <span class="post-tag">
-    <router-link :to="'/tags.html#' + tag">
+    <router-link :to="'/tag/' + tag">
       #{{ tag }}
     </router-link>
   </span>
