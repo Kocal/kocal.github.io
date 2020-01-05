@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-
 .post-tag
   margin-right: 4px
 
