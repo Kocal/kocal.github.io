@@ -27,7 +27,7 @@ export default {
     border-radius: 25px
     background-color: $accentColor
     color: #fff
-    font-size: .8rem
+    font-size: 1rem
     text-decoration: none !important
 
     &:hover
