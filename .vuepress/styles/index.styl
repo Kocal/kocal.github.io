@@ -6,3 +6,22 @@
   right: initial;
   left: 0
 }
+
+.vuepress-toc {
+  .vuepress-toc-item {
+    border: 0;
+
+    a {
+      transition: none !important;
+      font-size: 14px !important;
+    }
+
+    &.active {
+      background-color: $accentColor;
+
+      a {
+        color: white !important;
+      }
+    }
+  }
+}
