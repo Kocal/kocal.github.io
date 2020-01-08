@@ -18,7 +18,7 @@ Our servers are great, but they weren't powerful enough and scalable to generate
 
 I assume you have some knowledge about AWS SQS/Lambda and [the Symfony Messenger Component](https://symfony.com/doc/current/components/messenger.html) before reading this article. More info on [**Symfony Messenger on AWS Lambda**](https://developer.happyr.com/symfony-messenger-on-aws-lambda)
 
-This is what we have to do:
+This is the plan:
 - our CMS (Symfony) generates and send a message to the SQS queue. Thanks to the Messenger component, [happyr/message-serializer](https://github.com/Happyr/message-serializer), [sroze/messenger-enqueue-transport](https://github.com/sroze/messenger-enqueue-transport) and [enqueue/sqs](https://github.com/php-enqueue/sqs)
 - the SQS queue receives messages and pass them to the lambda
 - our lambda consumes the message, generates a PDF and save it on [Scaleway](https://www.scaleway.com/) ([Amazon S3](https://aws.amazon.com/en/s3/) like, but cheaper and **easier** to use)
@@ -157,8 +157,8 @@ What can we do?
 ## Use a _Brotli-fied_ Chrome
 
 During all my research to make Chrome runnable on AWS Lambda, I've found [chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda), a Node.js package that:
-- ships a _[Brotli](https://github.com/google/brotli)-fied_ Chrome (**~ 36MB**) which can run on AWS Lambda (see [`bin/` directory](https://github.com/alixaxel/chrome-aws-lambda/tree/master/bin))
-- provides a small wrapper around Puppeteer which uncompress Chrome on-the-fly 
+- ship a _[Brotli](https://github.com/google/brotli)-fied_ Chrome (**~ 36MB**) which can run on AWS Lambda (see [`bin/` directory](https://github.com/alixaxel/chrome-aws-lambda/tree/master/bin))
+- provide a small wrapper around Puppeteer which uncompress Chrome on-the-fly 
 
 Okay great, we have a Chrome that can by used on AWS Lambda, but now we are facing many solutions.
 
@@ -278,7 +278,7 @@ class Chromium
 
 This is the class which will uncompress Chrome at the runtime into `/tmp/chromium` folder.
 
-We have profiled this part of code and it takes ~2-3 seconds on a _fresh_ lamda, but it can be much faster is the lambda is re-used (`/tmp` is not cleared and uncompressed Chrome is still here). 
+We have profiled this part of code and it takes ~2-3 seconds on a _fresh_ lamda, but it can be much faster if the lambda is re-used (`/tmp` is not cleared and uncompressed Chrome is still here). 
 
 ```php
 <?php declare(strict_types=1);
