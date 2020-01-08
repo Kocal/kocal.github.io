@@ -2,25 +2,28 @@
   display: none;
 }
 
-.vuepress-toc {
-  right: initial;
-  left: 0
-}
+#vuperess-theme-blog__post-layout {
+  .vuepress-toc {
+    right: initial;
+    left: 0
+    border-left: none;
+    border-right: 1px solid $borderColor;
+    max-width: 280px;
 
-.vuepress-toc {
-  .vuepress-toc-item {
-    border: 0;
-
-    a {
-      transition: none !important;
-      font-size: 14px !important;
-    }
-
-    &.active {
-      background-color: $accentColor;
+    .vuepress-toc-item {
+      border: 0;
 
       a {
-        color: white !important;
+        transition: none !important;
+        font-size: 14px !important;
+      }
+
+      &.active {
+        background-color: $accentColor;
+
+        a {
+          color: white !important;
+        }
       }
     }
   }
