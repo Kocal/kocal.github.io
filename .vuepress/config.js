@@ -4,35 +4,43 @@ module.exports = {
   plugins: [
     '@vuepress/plugin-nprogress',
     ['@vuepress/medium-zoom', true],
-    [
-      '@vuepress/blog',
-      {
-        directories: [
-          {
-            id: 'post',
-            dirname: '_posts',
-            itemPermalink: '/:year/:month/:day/:slug',
-          },
-        ],
-        sitemap: {
-          hostname: 'https://hugo.alliau.me',
-          exclude: ['/404.html', '/post/']
-        },
-      },
-    ],
     'seo',
     ['social-share', {
       networks: ['twitter', 'facebook', 'reddit'],
       twitterUser: 'HugoAlliaume',
-    }]
+    }],
   ],
+  theme: '@vuepress/blog',
   themeConfig: {
     repo: 'Kocal/blog',
     editLinks: true,
     lastConfig: 'Last updated',
     nav: [
-      { text: 'Tags', link: '/tags/' },
+      { text: 'Tags', link: '/tag/' },
+      { text: 'GitHub', link: 'https://github.com/Kocal' },
       { text: 'Twitter', link: 'https://twitter.com/HugoAlliaume' },
     ],
+    modifyBlogPluginOptions(blogPluginOptions) {
+      const sitemap = {
+        ...blogPluginOptions.sitemap,
+        hostname: 'https://hugo.alliau.me',
+      };
+
+      const comment = {
+        service: "vssue",
+        autoCreateIssue: true,
+        prefix: "[Post] ",
+        owner: "Kocal",
+        repo: "blog",
+        clientId: "6ac293ccc1174292305a",
+        clientSecret: "93224fc793ab8375fb986a294ba27995d41afde9",
+      };
+
+      return {
+        ...blogPluginOptions,
+        sitemap,
+        comment,
+      };
+    },
   },
 };

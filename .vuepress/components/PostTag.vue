@@ -1,6 +1,6 @@
 <template>
   <span class="post-tag">
-    <router-link :to="'/tags.html#' + tag">
+    <router-link :to="'/tag/' + tag">
       #{{ tag }}
     </router-link>
   </span>
@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-
 .post-tag
   margin-right: 4px
 
@@ -28,7 +27,7 @@ export default {
     border-radius: 25px
     background-color: $accentColor
     color: #fff
-    font-size: .8rem
+    font-size: 1rem
     text-decoration: none !important
 
     &:hover
