@@ -7,10 +7,6 @@ tags:
   - chrome
 ---
 
-# {{ $page.frontmatter.title }}
-
-<PostTags :tags="$page.frontmatter.tags"/>
-
 ## Some context
 
 Those last months at work, for a new big functionality in our CMS, we had to think to _« how to generate a lot of PDFs (~1000 and more in the future) in a really short amount of time? »_.

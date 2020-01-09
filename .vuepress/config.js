@@ -14,7 +14,6 @@ module.exports = {
   themeConfig: {
     repo: 'Kocal/blog',
     editLinks: true,
-    lastConfig: 'Last updated',
     nav: [
       { text: 'Tags', link: '/tag/' },
       { text: 'GitHub', link: 'https://github.com/Kocal' },
