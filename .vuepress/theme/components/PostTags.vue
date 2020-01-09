@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import PostTag from '@theme/components/PostTag.vue';
+
 export default {
   name: 'PostTags',
+  components: {
+    PostTag,
+  },
   props: {
     tags: {
       type: Array,

@@ -12,7 +12,6 @@
     "@vuepress/plugin-nprogress": "^1.2.0",
     "@vuepress/plugin-search": "^1.2.0",
     "@vuepress/theme-blog": "^1.4.0",
-    "date-fns": "^2.8.1",
     "vuepress": "^1.2.0",
     "vuepress-plugin-seo": "^0.1.2",
     "vuepress-plugin-social-share": "^0.1.2"
