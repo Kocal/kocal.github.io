@@ -19,6 +19,7 @@ module.exports = {
       { text: 'GitHub', link: 'https://github.com/Kocal' },
       { text: 'Twitter', link: 'https://twitter.com/HugoAlliaume' },
     ],
+    smoothScroll: true,
     modifyBlogPluginOptions(blogPluginOptions) {
       const sitemap = {
         ...blogPluginOptions.sitemap,
