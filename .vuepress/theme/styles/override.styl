@@ -3,6 +3,10 @@
 }
 
 #vuepress-theme-blog__post-layout {
+  .post-tag a {
+    transition: none;
+  }
+
   .vuepress-toc {
     right: initial;
     left: 0
@@ -27,5 +31,33 @@
         }
       }
     }
+  }
+}
+
+#base-list-layout {
+  .ui-post-summary {
+    font-weight: initial
+  }
+
+
+  .ui-post-tag {
+    $size = 14px;
+    font-size: $size;
+
+    svg {
+      width: $size;
+      height: $size;
+    }
+
+    a {
+      font-weight: initial
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  {$contentClass}:not(.custom) > & {
+    margin-top: 0;
+    padding-top: 0;
   }
 }
