@@ -20,27 +20,20 @@ module.exports = {
       { text: 'Twitter', link: 'https://twitter.com/HugoAlliaume' },
     ],
     smoothScroll: true,
-    modifyBlogPluginOptions(blogPluginOptions) {
-      const sitemap = {
-        ...blogPluginOptions.sitemap,
-        hostname: 'https://hugo.alliau.me',
-      };
-
-      const comment = {
-        service: "vssue",
-        autoCreateIssue: true,
-        prefix: "[Post] ",
-        owner: "Kocal",
-        repo: "blog",
-        clientId: "6ac293ccc1174292305a",
-        clientSecret: "93224fc793ab8375fb986a294ba27995d41afde9",
-      };
-
-      return {
-        ...blogPluginOptions,
-        sitemap,
-        comment,
-      };
+    sitemap: {
+      hostname: 'https://hugo.alliau.me',
+    },
+    feed: {
+      canonical_base: 'https://hugo.alliau.me',
+    },
+    comment: {
+      service: "vssue",
+      autoCreateIssue: true,
+      prefix: "[Post] ",
+      owner: "Kocal",
+      repo: "blog",
+      clientId: "6ac293ccc1174292305a",
+      clientSecret: "93224fc793ab8375fb986a294ba27995d41afde9",
     },
   },
 };
