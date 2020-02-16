@@ -5,6 +5,7 @@ tags:
   - node.js
   - aws
   - chrome
+author: Hugo Alliaume
 ---
 
 ## Some context
