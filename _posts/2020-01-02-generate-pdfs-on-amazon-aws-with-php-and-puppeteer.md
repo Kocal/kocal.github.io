@@ -72,7 +72,7 @@ functions:
 
 ## How to generate a PDF?
 
-We don't wanted to use [wkhtmltopdf](https://wkhtmltopdf.org/)/[KnpLabs/KnpSnappyBundle](https://github.com/KnpLabs/KnpSnappyBundle), because we had enough issues in the past to install and use it (missing shared Linux libraries, crash when SSL errors, the render is not _predictable_ and can be different of what Chrome renders ...).
+We didn't want to use [wkhtmltopdf](https://wkhtmltopdf.org/)/[KnpLabs/KnpSnappyBundle](https://github.com/KnpLabs/KnpSnappyBundle), because we had enough issues in the past to install and use it (missing shared Linux libraries, crash when SSL errors, the render is not _predictable_ and can be different of what Chrome renders ...).
 
 Instead, we thought about using [Puppeteer](https://github.com/puppeteer/puppeteer) and [Browsershot](https://github.com/spatie/browsershot). Puppeteer is a **Node.js** library which profides an API to control **Chrome**, and Browsershot is a nice PHP wrapper around Puppeteer.
 
