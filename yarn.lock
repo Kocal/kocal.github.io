@@ -1078,10 +1078,10 @@
   dependencies:
     medium-zoom "^0.4.0"
 
-"@vuepress/plugin-medium-zoom@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@vuepress/plugin-medium-zoom/-/plugin-medium-zoom-1.3.1.tgz#59444007218a4def143a0ace0f13c365500327f0"
-  integrity sha512-2P+hiLZweLk4hNjEEaoioIamjpMDdr6M9GY7AcFIvbPGGAnLEmDjDecPEAUw3Bnep0MqumsoTn2qOPTP6KFj8g==
+"@vuepress/plugin-medium-zoom@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-medium-zoom/-/plugin-medium-zoom-1.4.1.tgz#5665561be3382246ae883c0ad77d91c7913e01da"
+  integrity sha512-dMo8eDbmM1Y+zRRECjmCcqtuTirkpYn7FbByURRSauh2hFqjHSN/uOKOHEj71TTzs1vwrLCynHvKo6tFEuUMNA==
   dependencies:
     medium-zoom "^1.0.4"
 
