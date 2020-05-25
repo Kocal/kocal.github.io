@@ -5,6 +5,7 @@ tags:
   - node.js
   - aws
   - chrome
+  - browsershot
 author: Hugo Alliaume
 ---
 
@@ -193,6 +194,10 @@ Fork `chrome-aws-lambda`, write a PHP wrapper, and open a pull request.
 - Time to wait before potential merging? We had a deadline for our new big functionality
 - Maybe the PR could have been refused
 - Two wrappers to maintain and test
+
+### EDIT 21/04/2020: Solution #4
+
+
 
 ## Use Chrome, Browsershot and Puppeteer on Amazon AWS 
 
