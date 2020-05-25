@@ -5,6 +5,7 @@ tags:
   - node.js
   - aws
   - chrome
+  - browsershot
 author: Hugo Alliaume
 ---
 
@@ -193,6 +194,19 @@ Fork `chrome-aws-lambda`, write a PHP wrapper, and open a pull request.
 - Time to wait before potential merging? We had a deadline for our new big functionality
 - Maybe the PR could have been refused
 - Two wrappers to maintain and test
+
+### EDIT 21/04/2020: Solution #4
+
+I've found a better solution by using `chrome-aws-lambda` in a bridge.
+
+**Pros:**
+- No manual updates
+- No need to handle Chrome binaries uncompressing ourself
+
+**Cons:**
+- I didn't find anyone yet
+
+Please read article [Generate PDFs on Amazon AWS with PHP and Puppeteer: The Best Way](./2020-04-21-generate-pdfs-on-amazon-aws-with-php-and-puppeteer-the-best-way.md).
 
 ## Use Chrome, Browsershot and Puppeteer on Amazon AWS 
 
