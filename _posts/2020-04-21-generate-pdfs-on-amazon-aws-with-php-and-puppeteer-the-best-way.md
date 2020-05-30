@@ -11,7 +11,7 @@ date: 2020-04-21
 ---
 
 ::: warning
-This article is a following of article [Generate PDFs on Amazon AWS with PHP and Puppeteer](/2020-01-02-generate-pdfs-on-amazon-aws-with-php-and-puppeteer.md), you must consider reading it before going further.
+This article is a following of article [Generate PDFs on Amazon AWS with PHP and Puppeteer](./2020-01-02-generate-pdfs-on-amazon-aws-with-php-and-puppeteer.md), you must consider reading it before going further.
 :::
 
 Several months ago, I wrote my [first article](./2020-01-02-generate-pdfs-on-amazon-aws-with-php-and-puppeteer.md) explaining how to use [Browsershot](https://github.com/spatie/browsershot) and [Puppeteer](https://github.com/puppeteer/puppeteer) on [AWS Lambda](https://aws.amazon.com/en/lambda/).
