@@ -10,6 +10,12 @@ author: Hugo Alliaume
 date: 2020-01-02
 ---
 
+::: warning EDIT: 21st april 2020
+This article was initially written by comparing 3 solutions and described [solution #1](#solution-1). 
+
+Since the 21st april 2020, a new solution was added and it's definitly the best solution, see [solution #4](#edit-21-04-2020-solution-4).
+:::
+
 ## Some context
 
 Those last months at work, for a new big functionality in our CMS, we had to think to _« how to generate a lot of PDFs (~1000 and more in the future) in a really short amount of time? »_.
@@ -207,7 +213,7 @@ I've found a better solution by using `chrome-aws-lambda` in a bridge.
 **Cons:**
 - I didn't find anyone yet
 
-Please read article [Generate PDFs on Amazon AWS with PHP and Puppeteer: The Best Way](./2020-04-21-generate-pdfs-on-amazon-aws-with-php-and-puppeteer-the-best-way.md).
+Please read article [Generate PDFs on Amazon AWS with PHP and Puppeteer: The Best Way](./2020-04-21-generate-pdfs-on-amazon-aws-with-php-and-puppeteer-the-best-way.md) to know more about.
 
 ## Use Chrome, Browsershot and Puppeteer on Amazon AWS 
 
