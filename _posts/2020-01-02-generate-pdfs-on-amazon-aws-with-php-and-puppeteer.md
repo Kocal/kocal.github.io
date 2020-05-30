@@ -7,6 +7,7 @@ tags:
   - chrome
   - browsershot
 author: Hugo Alliaume
+date: 2020-01-02
 ---
 
 ## Some context
