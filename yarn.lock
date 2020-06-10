@@ -1120,10 +1120,10 @@
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-search/-/plugin-search-1.0.0.tgz#56f4f441e5ad326b55b6c21c7646b197b22d68d4"
   integrity sha512-IoJX+BpaZfp9LurVBGdteSxHlPBWwFYqfJo4y3ZC8JIVJIqelWw7CVvCoBUkLq59teYCiqw4CYg2i91rcv7ZCQ==
 
-"@vuepress/plugin-search@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@vuepress/plugin-search/-/plugin-search-1.3.1.tgz#eee95c9c79a316a64ab046696a90a2ee1db35c34"
-  integrity sha512-iOIvMWUTPHrGxjDprFoGTcuI8Y8/6e6JjLO4mO6qe6qVqR1yCQ8cJzVYXIizjEHUFYJ04uZ3jF9gBV8npS+3ZQ==
+"@vuepress/plugin-search@^1.3.1", "@vuepress/plugin-search@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-search/-/plugin-search-1.5.1.tgz#86496b39ae9210d62c14fc4f4c67f8c949239bb9"
+  integrity sha512-JyYrTzDDZs6ANZgp7+DnuRTm3OB1LgrxUJriD5qLb7NXEDwWvJnf7noFxnp7j+yaMogCZN1IloTU0PLSLqub9A==
 
 "@vuepress/shared-utils@^1.0.0":
   version "1.2.0"
