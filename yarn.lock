@@ -1092,10 +1092,10 @@
   dependencies:
     nprogress "^0.2.0"
 
-"@vuepress/plugin-nprogress@^1.3.0", "@vuepress/plugin-nprogress@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@vuepress/plugin-nprogress/-/plugin-nprogress-1.3.1.tgz#4fb519f3a88cdc07439ac3a08595ab7b5ed182a6"
-  integrity sha512-vDBnIhTgGZbADwhaatSLsFnuj+MDDpCWQ79m9o+8RtMZO2HemedcCRNIj/ZLRJSBFjXrDdnXF5lpW4EEIeRaew==
+"@vuepress/plugin-nprogress@^1.3.1", "@vuepress/plugin-nprogress@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-nprogress/-/plugin-nprogress-1.5.3.tgz#01c699739ecfe94569986ff838665dcb30e6cb05"
+  integrity sha512-SBa4uoRBaBPF+TrN38y/eFSnj1c2a53EuyY+vYijrWq5+nmDCQkpoClpS4a90f2eG2shMIvsMxUsS8waMKFZ8w==
   dependencies:
     nprogress "^0.2.0"
 
