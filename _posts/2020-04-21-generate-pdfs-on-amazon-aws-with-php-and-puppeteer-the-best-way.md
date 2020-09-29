@@ -93,6 +93,8 @@ async function bridge() {
 
   // then execute Browsershot's initial binary
   return require('../vendor/spatie/browsershot/bin/browser');
+  // or if you use Browsershot ^3.38, see https://github.com/spatie/browsershot/pull/399
+  return require('../vendor/spatie/browsershot/bin/browser').callBrowser();
 }
 
 bridge();
