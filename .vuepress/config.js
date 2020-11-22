@@ -46,7 +46,6 @@ module.exports = {
     },
     comment: {
       service: "vssue",
-      autoCreateIssue: true,
       prefix: "[Post] ",
       owner: "Kocal",
       repo: "blog",
