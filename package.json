@@ -7,7 +7,7 @@
     "build": "vuepress build"
   },
   "dependencies": {
-    "@vuepress/plugin-blog": "^1.9.3",
+    "@vuepress/plugin-blog": "^1.9.4",
     "@vuepress/plugin-medium-zoom": "^1.7.1",
     "@vuepress/plugin-nprogress": "^1.7.1",
     "@vuepress/plugin-search": "^1.7.1",
