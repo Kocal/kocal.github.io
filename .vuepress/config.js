@@ -27,6 +27,12 @@ module.exports = {
         '/': 'WARNING',
       }
     }],
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'G-Z8KN175TJZ'
+      }
+    ]
   ],
   theme: '@vuepress/blog',
   themeConfig: {
