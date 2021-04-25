@@ -1,9 +1,10 @@
-import { format as formatDate } from 'date-fns';
+import dayjs from 'dayjs';
+import dayjsPluginUTC from 'dayjs/plugin/utc';
+import dayjsPluginLocalizedFormat from 'dayjs/plugin/localizedFormat';
 
 export default ({ Vue, options, router, siteData }) => {
-  Vue.filter('date', (date, format) => {
-    return formatDate(date, format);
-  });
+  dayjs.extend(dayjsPluginUTC);
+  dayjs.extend(dayjsPluginLocalizedFormat);
 
   Vue.mixin({
     computed: {
