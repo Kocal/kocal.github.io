@@ -27,7 +27,7 @@
       </template>
     </Sidebar>
 
-    <slot :sidebar-items="sidebarItems" />
+    <slot />
   </div>
 </template>
 

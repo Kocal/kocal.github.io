@@ -1,13 +1,11 @@
 <template>
   <Layout>
-    <template #default>
-      <BaseListLayout />
-    </template>
+    <BaseListLayout />
   </Layout>
 </template>
 
 <script>
-import BaseListLayout from '../components/BaseListLayout';
+import BaseListLayout from '@theme/components/BaseListLayout.vue';
 
 export default {
   name: "Post",
