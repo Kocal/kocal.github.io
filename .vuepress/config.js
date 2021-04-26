@@ -2,41 +2,17 @@ module.exports = {
   title: 'Hugo Alliaume',
   description: 'My personal blog',
   plugins: [
-    '@vuepress/plugin-nprogress',
-    ['@vuepress/medium-zoom', true],
-    'seo',
-    ['social-share', {
-      networks: ['twitter', 'facebook', 'reddit'],
-      twitterUser: 'HugoAlliaume',
-    }],
-    ['container', {
-      type: 'tip',
-      defaultTitle: {
-        '/': 'TIP',
-      }
-    }],
-    ['container', {
-      type: 'warning',
-      defaultTitle: {
-        '/': 'WARNING',
-      }
-    }],
-    ['container', {
-      type: 'danger',
-      defaultTitle: {
-        '/': 'WARNING',
-      }
-    }],
     [
       '@vuepress/google-analytics',
       {
         'ga': 'UA-93495564-3'
       }
-    ]
+    ],
+    '@vuepress/pwa'
   ],
-  theme: '@vuepress/blog',
   themeConfig: {
     repo: 'Kocal/blog',
+    docsBranch: 'main',
     editLinks: true,
     nav: [
       { text: 'Tags', link: '/tag/' },
@@ -44,19 +20,15 @@ module.exports = {
       { text: 'Twitter', link: 'https://twitter.com/HugoAlliaume' },
     ],
     smoothScroll: true,
-    sitemap: {
-      hostname: 'https://hugo.alliau.me',
-    },
-    feed: {
-      canonical_base: 'https://hugo.alliau.me',
-    },
+    sidebar: 'auto',
+    dateFormat: 'LL',
     comment: {
-      service: "vssue",
-      prefix: "[Post] ",
+      service: "gitalk",
+      clientID: "114b1045fc6a5b2d1338",
+      clientSecret: "f6d97c5b707e0d2fb96446f837bad654d1dab5f7",
       owner: "Kocal",
       repo: "blog",
-      clientId: "6ac293ccc1174292305a",
-      clientSecret: "93224fc793ab8375fb986a294ba27995d41afde9",
+      admin: ['Kocal'],
     },
   },
 };

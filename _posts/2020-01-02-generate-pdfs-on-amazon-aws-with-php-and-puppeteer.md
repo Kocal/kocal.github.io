@@ -6,14 +6,17 @@ tags:
   - aws
   - chrome
   - browsershot
-author: Hugo Alliaume
 date: 2020-01-02
+summary: Using Browsershot and Puppeteer to generate PDFs on Amazon AWS Lambda.
+badges: 
+    - text: outdated
+      type: warning
 ---
 
 ::: warning EDIT: 21st april 2020
 This article was initially written by comparing 3 solutions and described [solution #1](#solution-1). 
 
-Since the 21st april 2020, a new solution was added and it's definitly the best solution, see [solution #4](#edit-21-04-2020-solution-4).
+Since the 21st april 2020, a new solution was added, and it's definitely the best solution, see [solution #4](#edit-21-04-2020-solution-4).
 :::
 
 ## Some context
