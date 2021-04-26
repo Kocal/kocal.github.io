@@ -41,11 +41,6 @@ module.exports = {
     '@vuepress/plugin-nprogress',
     ['@vuepress/medium-zoom', true],
     'seo',
-    ['social-share', {
-      networks: ['twitter', 'facebook', 'reddit'],
-      twitterUser: 'HugoAlliaume',
-      noGlobalSocialShare: true,
-    }],
   ],
 
   /**

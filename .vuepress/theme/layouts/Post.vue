@@ -13,8 +13,6 @@
               :date="$frontmatter.date"
               :location="$frontmatter.location"
           />
-
-          <SocialShare style="padding: 10px 0" />
         </header>
 
         <Content class="theme-default-content" itemprop="articleBody" style="padding: 0" />

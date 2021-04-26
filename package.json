@@ -19,8 +19,6 @@
     "remove-markdown": "^0.3.0",
     "vue-feather-icons": "^5.1.0",
     "vuepress": "^1.8.2",
-    "vuepress-plugin-container": "^2.1.4",
-    "vuepress-plugin-seo": "^0.1.2",
-    "vuepress-plugin-social-share": "^1.0.0"
+    "vuepress-plugin-seo": "^0.1.2"
   }
 }
