@@ -36,6 +36,7 @@ module.exports = {
     ['social-share', {
       networks: ['twitter', 'facebook', 'reddit'],
       twitterUser: 'HugoAlliaume',
+      noGlobalSocialShare: true,
     }],
   ],
 

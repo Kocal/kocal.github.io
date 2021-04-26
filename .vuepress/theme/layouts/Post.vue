@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <main class="page">
-      <article class="theme-default-content" itemscope itemtype="https://schema.org/BlogPosting">
+        <article class="theme-default-content" itemscope itemtype="https://schema.org/BlogPosting">
         <header>
           <h1 itemprop="name headline">
             {{ $frontmatter.title }}
@@ -13,6 +13,8 @@
               :date="$frontmatter.date"
               :location="$frontmatter.location"
           />
+
+          <SocialShare style="padding: 10px 0"/>
         </header>
 
         <Content class="theme-default-content" itemprop="articleBody" style="padding: 0" />
