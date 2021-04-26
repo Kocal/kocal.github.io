@@ -21,14 +21,14 @@ module.exports = {
     ],
     smoothScroll: true,
     sidebar: 'auto',
-    dateFormat: 'LL'
-    // comment: {
-    //   service: "vssue",
-    //   prefix: "[Post] ",
-    //   owner: "Kocal",
-    //   repo: "blog",
-    //   clientId: "6ac293ccc1174292305a",
-    //   clientSecret: "93224fc793ab8375fb986a294ba27995d41afde9",
-    // },
+    dateFormat: 'LL',
+    comment: {
+      service: "gitalk",
+      clientID: "114b1045fc6a5b2d1338",
+      clientSecret: "f6d97c5b707e0d2fb96446f837bad654d1dab5f7",
+      owner: "Kocal",
+      repo: "blog",
+      admin: ['Kocal'],
+    },
   },
 };

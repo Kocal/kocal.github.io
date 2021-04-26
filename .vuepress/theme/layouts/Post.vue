@@ -21,6 +21,8 @@
 
         <footer>
           <PageEdit />
+          <hr>
+          <Comment />
         </footer>
       </article>
     </main>
@@ -32,9 +34,10 @@ import Page from '@theme/components/Page.vue';
 import PageEdit from '@theme/components/PageEdit.vue';
 import PostMeta from '@theme/components/PostMeta.vue';
 import SidebarLinks from '@theme/components/SidebarLinks.vue';
+import Comment from '@theme/components/Comment.vue';
 
 export default {
   name: "Post",
-  components: { PostMeta, Page, PageEdit, SidebarLinks },
+  components: { Comment, PostMeta, Page, PageEdit, SidebarLinks },
 };
 </script>
