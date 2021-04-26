@@ -7,7 +7,8 @@ module.exports = {
       {
         'ga': 'UA-93495564-3'
       }
-    ]
+    ],
+    '@vuepress/pwa'
   ],
   themeConfig: {
     repo: 'Kocal/blog',

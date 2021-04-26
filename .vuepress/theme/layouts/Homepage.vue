@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #default>
-      <BaseListLayout v-if="$pagination" />
+      <BaseListLayout />
     </template>
   </Layout>
 </template>

@@ -34,14 +34,11 @@
 <script>
 import Navbar from '@theme/components/Navbar.vue';
 import Sidebar from '@theme/components/Sidebar.vue';
-import BaseListLayout from '../components/BaseListLayout';
-
 import { resolveSidebarItems } from '@vuepress/theme-default/util';
 
 export default {
   name: 'Layout',
   components: {
-    BaseListLayout,
     Sidebar,
     Navbar,
   },
@@ -76,31 +73,12 @@ export default {
       );
     },
     sidebarItems() {
-      let sidebarItems = resolveSidebarItems(
+      return resolveSidebarItems(
           this.$page,
           this.$page.regularPath,
           this.$site,
           this.$localePath,
       );
-
-      // Build Table of Contents given the headers of the Post
-      // if (Array.isArray(this.$page.headers)) {
-      //   sidebarItems = [
-      //     ...sidebarItems,
-      //     {
-      //       type: 'group',
-      //       title: this.$page.title,
-      //       path: '/',
-      //       basePath: this.$page.path,
-      //       children: this.$page.headers.map(header => ({
-      //         slug: header.slug,
-      //         title: header.title,
-      //       }))
-      //     },
-      //   ];
-      // }
-
-      return sidebarItems;
     },
     pageClasses() {
       const userPageClass = this.$page.frontmatter.pageClass;
