@@ -22,10 +22,7 @@
         <footer>
           <PageEdit />
           <hr>
-          <a :href="commentUrl" class="btn-comment" target="_blank" rel="noopener noreferrer">
-            Leave a comment!
-            <ExternalLinkIcon style="margin-left: 5px"/>
-          </a>
+          <Comment />
         </footer>
       </article>
     </main>
@@ -37,33 +34,10 @@ import Page from '@theme/components/Page.vue';
 import PageEdit from '@theme/components/PageEdit.vue';
 import PostMeta from '@theme/components/PostMeta.vue';
 import SidebarLinks from '@theme/components/SidebarLinks.vue';
-import {ExternalLinkIcon} from 'vue-feather-icons'
+import { Comment } from '@vuepress/plugin-blog/lib/client/components';
 
 export default {
   name: "Post",
-  components: { PostMeta, Page, PageEdit, SidebarLinks, ExternalLinkIcon },
-  computed: {
-    commentUrl() {
-      return `https://github.com/${this.$themeConfig.repo}/issues?q=${encodeURIComponent('is:issue is:open ' + this.$frontmatter.title)}`;
-    },
-  },
+  components: { PostMeta, Page, PageEdit, SidebarLinks, Comment },
 };
 </script>
-
-<style scoped lang="stylus">
-.btn-comment {
-  display flex;
-  align-items center
-  justify-content center
-  padding: 12px;
-  font-size 20px;
-  background-color $accentColor;
-  color #fff;
-  border-radius: 5px;
-  text-decoration none !important;
-
-  &:hover {
-    background-color: darken($accentColor, 10%);
-  }
-}
-</style>
