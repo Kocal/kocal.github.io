@@ -86,7 +86,12 @@ const request = args[0].startsWith('-f ')
 async function bridge() {
   // merge Browsershot options with chromium-aws-lambda options
   request.options.executablePath = await chromium.executablePath;
-  request.options.args = [...chromium.args, ...request.options.args];
+  request.options.args = [
+    ...chromium.args, 
+    ...request.options.args,
+    '--disable-dev-profile',
+    '--user-data-dir=/dev/null',
+  ];
 
   // override process arguments
   process.argv[2] = JSON.stringify(request);
@@ -94,7 +99,7 @@ async function bridge() {
   // then execute Browsershot's initial binary
   return require('../vendor/spatie/browsershot/bin/browser');
   // or if you use Browsershot ^3.38, see https://github.com/spatie/browsershot/pull/399
-  return require('../vendor/spatie/browsershot/bin/browser').callBrowser();
+  return require('../vendor/spatie/browsershot/bin/browser').callBrowser(chromium.puppeteer);
 }
 
 bridge();
