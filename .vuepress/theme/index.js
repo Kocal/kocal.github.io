@@ -48,6 +48,7 @@ module.exports = {
    */
   extendPageData(pageCtx) {
     if (pageCtx.path === '/') {
+      pageCtx.frontmatter.home = true;
       pageCtx.frontmatter.title = 'Homepage';
       pageCtx.frontmatter.layout = 'Homepage';
     }
