@@ -35,7 +35,7 @@ module.exports = {
         owner: "Kocal",
         repo: "blog",
         clientId: "114b1045fc6a5b2d1338",
-        clientSecret: "f6d97c5b707e0d2fb96446f837bad654d1dab5f7",
+        clientSecret: process.env.VSSUE_CLIENT_SECRET || '<secret key>',
       }
     }],
     '@vuepress/plugin-nprogress',
