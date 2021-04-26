@@ -29,6 +29,14 @@ module.exports = {
       feed: {
         canonical_base: 'https://hugo.alliau.me',
       },
+      comment: {
+        service: 'vssue',
+        platform: 'github',
+        owner: "Kocal",
+        repo: "blog",
+        clientId: "114b1045fc6a5b2d1338",
+        clientSecret: "f6d97c5b707e0d2fb96446f837bad654d1dab5f7",
+      }
     }],
     '@vuepress/plugin-nprogress',
     ['@vuepress/medium-zoom', true],
