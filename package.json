@@ -7,6 +7,8 @@
     "build": "vuepress build"
   },
   "dependencies": {
+    "@vssue/api-github-v3": "^1.4.7",
+    "@vssue/vuepress-plugin-vssue": "^1.4.8",
     "@vuepress/plugin-blog": "^1.9.4",
     "@vuepress/plugin-google-analytics": "^1.8.2",
     "@vuepress/plugin-medium-zoom": "^1.8.2",
@@ -14,7 +16,6 @@
     "@vuepress/plugin-pwa": "^1.8.2",
     "@vuepress/plugin-search": "^1.8.2",
     "dayjs": "^1.10.4",
-    "gitalk": "^1.7.2",
     "remove-markdown": "^0.3.0",
     "vue-feather-icons": "^5.1.0",
     "vuepress": "^1.8.2",
