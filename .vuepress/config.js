@@ -1,6 +1,9 @@
 module.exports = {
   title: 'Hugo Alliaume',
   description: 'My personal blog',
+  head: [
+    ['link', { rel: "icon", type: "image/png", href: "/favicon.png"}],
+  ],
   plugins: [
     [
       '@vuepress/google-analytics',
