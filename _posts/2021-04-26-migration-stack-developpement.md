@@ -177,16 +177,18 @@ Dans notre cas, c'est vraiment l'outil utltime qui fait ~80% du travail :
   voir [Overriding PHP Config Options Per Project](https://symfony.com/doc/current/setup/symfony_server.html#overriding-php-config-options-per-project)
 - il est possible de configurer la version de PHP pour chaque projet, via un fichier `.php-version`,
   voir [Selecting a Different PHP Version](https://symfony.com/doc/current/setup/symfony_server.html#selecting-a-different-php-version)
-  ::: tip Ça veut dire qu'il faut utiliser le binaire `symfony` pour exécuter des commandes/binaires avec la bonne version de PHP :
+::: tip 
+Ça veut dire qu'il faut utiliser le binaire `symfony` pour exécuter des commandes/binaires avec la bonne version de PHP :
 - PHP via `symfony php` (ex : `symfony php bin/phpstan analyze`)
 - Composer via `symfony composer` (ex : `symfony composer install`)
 - La console Symfony avec le raccourci `symfony console` (ex : `symfony console cache:clear`)
-  :::
+:::
 - et le plus exceptionnel, une [intégration avec Docker](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) qui permet d'injecter automatiquement des variables d'
   environnement du type `DATABASE_URL` ou `REDIS_URL` si des containers d'un certain type sont détectés, **et c'est PARFAIT pour nous !** :heart_eyes:    
-  ::: warning Le binaire `symfony` utilisera **toujours** les variables d'environnement détectées via Docker et ignorera les variables d'environnement locales. Cela veut dire que les variables
-  d'environnement `DATABASE_URL`, `REDIS_URL`, etc... définies dans vos `.env` ou `.env.test` **ne seront pas utilisées**.
-  :::
+::: warning 
+Le binaire `symfony` utilisera **toujours** les variables d'environnement détectées via Docker et ignorera les variables d'environnement locales. Cela veut dire que les variables
+d'environnement `DATABASE_URL`, `REDIS_URL`, etc... définies dans vos `.env` ou `.env.test` **ne seront pas utilisées**.
+:::
 
 ## Docker
 
