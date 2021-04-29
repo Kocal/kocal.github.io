@@ -10,10 +10,10 @@ date: 2021-04-26
 summary: Pourquoi et comment migrer des machines virtuelles à de l'hybride et containers Docker.
 ---
 
-Chez [yProximité](https://www.y-proximite.fr/), agence web, on utilise les machines virtuelles depuis plusieurs années comme stack de développement sur tous nos différents projets web (nécessitant un
-serveur web nginx, du PHP, du Node.js, et des fois une base de données).
+Chez [yProximité](https://www.y-proximite.fr/), agence web, on utilise les machines virtuelles depuis plusieurs années comme stack de développement sur tous nos différents projets web, afin de mettre
+un place un environnement de développement complet avec un serveur web nginx, PHP, Node.js, une base de données et Redis.
 
-On utilise :
+Pour cela, on utilise :
 
 - make, car les `Makefile` c'est super pratique
 - [VirtualBox](https://www.virtualbox.org/) pour la virtualisation des machines
@@ -30,19 +30,20 @@ En revanche, plusieurs années ont passé et l'équipe et moi-même avons rencon
 ### Problèmes systèmes
 
 1. Pour les utilisateurs d'Ubuntu 18.04 ou plus, le plugin [Vagrant Landrush](https://github.com/vagrant-landrush/landrush) (qui permet de mapper un faux NDD vers l'IP d'une
-   VM) [ne fonctionne pas](https://github.com/vagrant-landrush/landrush/issues/342). On doit manuellement rajouter une entrée dans notre `/etc/hosts`.
-2. Il y a des versions de VirtualBox qui ne fonctionnent litérallement pas. Dès que je trouvais une version qui fonctionnait parfaitement (ex : `6.1.16` pour Ubuntu 20.10), je désactivais les mises à
-   jour via `echo "virtualbox-6.1 hold" | sudo dpkg --set-selections`, dans la crainte qu'une mise à jour ne fasse plus fonctionner les VM...
+   VM) [ne fonctionne pas](https://github.com/vagrant-landrush/landrush/issues/342). On doit manuellement ajouter une entrée dans notre `/etc/hosts`.
+2. Il y a des versions de VirtualBox qui ne fonctionnent pas. Dès que je trouvais une version qui fonctionnait parfaitement (ex : `6.1.16` pour Ubuntu 20.10), je désactivais les mises à
+   jour via `echo "virtualbox-6.1 hold" | sudo dpkg --set-selections`, dans la crainte qu'une mise à jour ne fasse plus fonctionner les VM.S
 3. Des problèmes d'espace disque. Avec une VM par projet, l'espace disque utilisé peut monter assez vite (~160 Go utilisé après 3 ans sans nettoyage).
 4. Des problèmes de consommation CPU / RAM, faire tourner une ou plusieurs VM, avec PhpStorm, avec Google Chrome, etc... le tout en même temps, ce n'est pas donné à tout le monde. Il faut avoir une
    très bonne machine capable d'encaisser la charge.
+5. qsd
 
 ### Problèmes applicatifs
 
-5. Le watching de fichiers qui ne fonctionne pas à cause de l'utilisation de NFS :
+5. Le _watching_ de fichiers (le fait d'observer les modifications sur des fichiers en temps réel) qui ne fonctionne pas à cause de l'utilisation de NFS :
     - faire fonctionner le mode watch et dev-server de webpack, grâce au [polling](https://webpack.js.org/configuration/watch/#watchoptionspoll)
     - faire fonctionner le mode watch de TailwindCSS JIT grâce à `CHOKIDAR_USEPOLLING=1` ([discussion GitHub](https://github.com/tailwindlabs/tailwindcss/discussions/4024))
-6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, etc ...), ça se fait automatiquement dès le boot de la VM, mais si on
+6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, ...), ça se fait automatiquement au boot de la VM, mais si on
    pouvait éviter...
 7. Pour nos git hooks ou tests Cypress (tout ce qui peut être lancé dans et en dehors de la VM en fait), il fallait passer par un petit script `vagrant-wrapper.sh` pour s'assurer que nos commandes
    soient bien exécutées dans la VM :
@@ -67,7 +68,7 @@ vagrant_wrapper() {
 vagrant_wrapper $@
 ```
 
-8. Si on utilisait un certificat HTTPS local (ex : généré avec [mkcert](https://github.com/FiloSottile/mkcert)), il fallait lancer nginx après que la partition NFS (contenant notre certificat HTTPS)
+8. Si on utilisait un certificat HTTPS local (ex : généré avec [mkcert](https://github.com/FiloSottile/mkcert)), il fallait relancer nginx après que la partition NFS (contenant notre certificat HTTPS)
    soit montée, sinon nginx ne se lançait pas car certificat HTTPS introuvable :
 
 ```ruby
@@ -81,7 +82,7 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-9. Si l'un de nos projets dépendait d'un autre (ex : projet **A** qui utilise l'API du projet **B** et qui est en HTTPS), alors il fallait importer le certificat racine de mkcert dans la VM (cette
+9. Si l'un de nos projets dépend d'un autre (ex : projet **A** qui utilise l'API du projet **B** et qui est en HTTPS), alors il fallait importer le certificat racine de mkcert dans la VM (cette
    solution n'a été testée que sous Debian/Ubuntu, ne fonctionne sans doute pas sous macOS) :
 
 ```ruby
@@ -128,7 +129,7 @@ end
 
 ### tl;dr
 
-Beaucoup trop de problèmes, beaucoup trop de tweaks et temps investi pour outre-passer ces derniers.
+Beaucoup trop de problèmes, beaucoup trop de tweaks et temps investi pour outrepasser ces derniers.
 
 ## Analyses et réflexions
 
@@ -137,7 +138,7 @@ Pour récapituler :
 - nos projets webs nécessitent un serveur web, Nginx
 - ils sont tous basés sur du PHP (mais avec des versions différentes)
 - certains ont besoin de Node.js (également avec des versions différentes) pour build des assets via [webpack Encore](https://github.com/symfony/webpack-encore)
-- certains ont besoin d'une base de données (MySQL, MariaDB ou PostgreSQL avec des versions différentes aussi)
+- certains ont besoin d'une base de données MySQL, MariaDB ou PostgreSQL (encore avec des versions différentes aussi)
 - certains ont besoin de Redis (pour la mise en cache et stocker des sessions PHP)
 
 ### Réflexions
@@ -156,38 +157,36 @@ Je sais par expérience que :
 - installer des serveurs de base de données et gérer différentes versions en même temps, c'est **UNE HORREUR** et je n'ai pas envie de bousiller ma machine
 - installer Redis globalement n'est peut-être pas la meilleure des idées non plus...
 
-Avec ce constant, je me suis dit qu'on pouvait tenter une stack hybride :
+Avec ce constat, je me suis dit qu'on pouvait tenter une stack hybride :
 
 - PHP et Node.js installés sur la machine
 - les bases de données et Redis installés via Docker
-- il ne manque plus que le serveur web... Comment qu'on fait ?
+- il ne manque plus que le serveur web... Comment fait-on ?
 
 ## Symfony CLI :sparkles:
 
-[Symfony CLI](https://github.com/symfony/cli) est un outil écrit en Go et qui a remplacé l'ancien [Symfony WebServerBundle](https://github.com/symfony/web-server-bundle). Il permet donc de lancer un
-serveur PHP et c'est déjà l'outil qu'on utilisait sur nos CI pour nos tests E2E avec [Cypress](https://www.cypress.io/).
+[Symfony CLI](https://github.com/symfony/cli) est un outil écrit en Go et qui a notamments remplacé l'ancien [Symfony WebServerBundle](https://github.com/symfony/web-server-bundle). 
+On l'utilise déjà sur nos CI pour lancer un serveur web pour nos tests E2E avec [Cypress](https://www.cypress.io/).
 
-Dans notre cas, c'est vraiment l'outil utltime qui fait ~80% du travail :
+Mais ce n'est pas tout. Symfony CLI est un outil surboosté aux vitamines avec d'incroyables fonctionnalités permettant de régler plusieurs problématiques : 
 
-- il permet donc de démarrer un serveur web
-- il est possible d'activer le support d'HTTPS, voir [Enabling TLS](https://symfony.com/doc/current/setup/symfony_server.html#enabling-tls)
-- il est possible de démarrer proxy local et d'y attacher des domaines (un ou plusieurs domaines par projets),
-  voir [Setting up the Local Proxy](https://symfony.com/doc/current/setup/symfony_server.html#setting-up-the-local-proxy)
-- il est possible de configurer PHP à la volée par projet via un `php.ini`,
-  voir [Overriding PHP Config Options Per Project](https://symfony.com/doc/current/setup/symfony_server.html#overriding-php-config-options-per-project)
-- il est possible de configurer la version de PHP pour chaque projet, via un fichier `.php-version`,
-  voir [Selecting a Different PHP Version](https://symfony.com/doc/current/setup/symfony_server.html#selecting-a-different-php-version)
+- on peut donc de démarrer un serveur web, bye Nginx :wave: 
+- on peut activer [le support d'HTTPS](https://symfony.com/doc/current/setup/symfony_server.html#enabling-tls), bye mkcert :wave: 
+- on peut définir [des noms de domaines grâce à un proxy local](https://symfony.com/doc/current/setup/symfony_server.html#setting-up-the-local-proxy), bye Landrush :wave:
+- on peut [configurer PHP via un `php.ini`](https://symfony.com/doc/current/setup/symfony_server.html#overriding-php-config-options-per-project) , super pratique pour configurer la timezone ou activer/désactiver XDebug,
+- on peut [configurer la version de PHP](https://symfony.com/doc/current/setup/symfony_server.html#selecting-a-different-php-version) à utiliser via un fichier `.php-version`
 ::: tip 
 Ça veut dire qu'il faut utiliser le binaire `symfony` pour exécuter des commandes/binaires avec la bonne version de PHP :
 - PHP via `symfony php` (ex : `symfony php bin/phpstan analyze`)
 - Composer via `symfony composer` (ex : `symfony composer install`)
 - La console Symfony avec le raccourci `symfony console` (ex : `symfony console cache:clear`)
 :::
-- et le plus exceptionnel, une [intégration avec Docker](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) qui permet d'injecter automatiquement des variables d'
-  environnement du type `DATABASE_URL` ou `REDIS_URL` si des containers d'un certain type sont détectés, **et c'est PARFAIT pour nous !** :heart_eyes:    
+- et le plus exceptionnel, une [intégration avec Docker](https://symfony.com/doc/current/setup/symfony_server.html#docker-integration) qui permet de définir automatiquement des variables 
+  d'environnement en fonction des containers. Si on utilise un container pour une base de données, alors `DATABASE_URL` sera automatiquement définie **et c'est PARFAIT pour nous !** :heart_eyes:
 ::: warning 
-Le binaire `symfony` utilisera **toujours** les variables d'environnement détectées via Docker et ignorera les variables d'environnement locales. Cela veut dire que les variables
-d'environnement `DATABASE_URL`, `REDIS_URL`, etc... définies dans vos `.env` ou `.env.test` **ne seront pas utilisées**.
+Le binaire `symfony` utilisera **toujours** les variables d'environnement détectées via Docker et ignorera les variables d'environnement locales. 
+  
+Cela veut dire que les variables d'environnement `DATABASE_URL`, `REDIS_URL`, etc... définies dans vos `.env` ou `.env.test` **ne seront pas utilisées**.
 :::
 
 ## Docker
@@ -245,12 +244,13 @@ Si c'est le cas, félicitations ! Le binaire `symfony` a correctement détecté 
 
 ## En résumé
 
+En résumé, notre nouvelle stack de développement consiste en :
 - Avoir PHP installé localement
 - Avoir Node.js installé localement (ou non)
 - Utiliser Docker pour les bases de données et Redis
-- Utiliser le Symfony CLI en tant que serveur web, proxy pour le nom de domaine, le https, et intégration Docker
+- Utiliser le Symfony CLI en tant que serveur web, proxy pour le nom de domaine, le https, et l'intégration Docker
 
-Mettre en route tout ça sur un projet :
+Mise en oeuvre sur un projet : 
 
 - Créer un `docker-compose.yaml` à votre sauce
 - Puis lancer les commandes suivantes :
@@ -269,24 +269,28 @@ Enjoy !
 
 ### Utiliser Manala et les recipes
 
-Pour faciliter la maintenance, l'évolutivité, la configuration et la gestion de ces toutes étapes à travers nos différents, on utilise [l'outil Manala](https://manala.github.io/manala/)
-qui permet d'utiliser un système de recipes (recettes) et de générer automatiquement plusieurs fichiers à partir d'un seul point d'entrée : le `.manala.yaml`.
+Pour faciliter la maintenance, l'évolutivité, la configuration et la gestion de ces toutes étapes à travers nos différents projets, on utilise [l'outil Manala](https://manala.github.io/manala/)
+permettant l'utilisation d'un système de recipes (recettes) et de générer automatiquement plusieurs fichiers à partir d'un seul point d'entrée : le fichier de configuration `.manala.yaml`.
 
-Il y a des [recipes officielles](https://github.com/manala/manala-recipes) fournies par Manala, mais ça ne nous convenait pas forcément. On a donc
-créé [notre propre repository de recipes](https://github.com/yproximite/manala-recipes), avec une [recipe `yprox.app-docker`](https://github.com/Yproximite/manala-recipes/tree/main/yprox.app-docker)
+Il y a des [recipes officielles](https://github.com/manala/manala-recipes) fournies par Manala, mais ça ne nous convenait pas forcément. 
+On a donc créé [notre propre repository de recipes](https://github.com/yproximite/manala-recipes), avec une [recipe `yprox.app-docker`](https://github.com/Yproximite/manala-recipes/tree/main/yprox.app-docker)
 qui permet :
 
-- de définir la timezone du projet, qui sera injectée dans PHP et dans les containers Docker
+- de définir la timezone du projet, qui sera injectée dans le `php.ini` et dans les containers Docker
 - de définir une configuration PHP, qui sera injectée dans le `php.ini`
-- de définir quelle base de données utiliser et quelle version, qui modifiera le `docker-compose.yaml`
-- de mettre à disposition au développeur des commandes :
+- de définir quelle base de données et quelle version utiliser, qui modifiera le `docker-compose.yaml`
+- de mettre à disposition quelques commandes :
     - `make setup` : à exécuter qu'une seule fois, pour _setuper_ le projet, créer les containers Docker...
     - `make up` : pour lancer le proxy local Symfony et les containers Docker
     - `make halt` : pour stopper les containers Docker (quand la journée est finie :stuck_out_tongue: )
     - `make destroy` : pour supprimer les containers Docker et volumes associés
 
-Une fois cette recipe mise en place via `manala init -i yprox.app-docker --repository https://github.com/Yproximite/manala-recipes.git`, sa mise à jour se fera très simplement via un `manala up` :
-tada:.
+La recipe s'installe facilement :
+```shell
+manala init -i yprox.app-docker --repository https://github.com/Yproximite/manala-recipes.git
+```
+
+Pour mettre à jour la recipe, simplement lancer un `manala up` :tada:.
 
 Il ne me faut pas plus de 2 minutes pour mettre à jour la recipe sur 4 ou 5 projets, c'est un vrai gain de temps considérable !
 
@@ -296,7 +300,7 @@ Puisqu'on a :
 
 - la version de PHP définie dans le `.php-version`
 - la version de Node.js définie dans le `.nvmrc`
-- et un `docker-compose.yaml`
+- et un `docker-compose.yaml` pour la base de données et Redis
 
 Est-ce qu'il serait possible d'exploiter tout ça dans le CI ? La réponse est oui.
 
@@ -399,13 +403,14 @@ jobs:
             
             # Installation de PHP et Node.js
             
-+           # Configure le Symfony CLI and lance les containers Docker
++           # Configure le Symfony CLI et lance les containers Docker
 +           - run: make setup@integration
 ```
 
 #### Exemple complet
 
-Il est possible de créer une GitHub Action locale qui définira plusieurs variables d'environnement pour nous faciliter la vie :
+On a créé une GitHub Action locale qui définit plusieurs variables d'environnement. 
+De cette façon on peut l'utiliser dans plusieurs jobs et éviter de dupliquer pas mal de lignes :
 
 ```yaml
 # .github/actions/setup-environment/action.yml
@@ -441,7 +446,7 @@ runs:
       shell: bash
 ```
 
-Et un exemple de workflow pour PHP, nos assets JavaScript, et des tests E2E Cypress + auto-approve si l'auteur de la PR est [Dependabot](https://dependabot.com/) :
+Et un exemple de workflow pour PHP, nos assets JavaScript, et des tests E2E Cypress + auto-approve si c'est une PR [Dependabot](https://dependabot.com/) :
 
 ```yaml
 name: CI
