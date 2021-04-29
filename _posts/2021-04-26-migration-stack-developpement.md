@@ -41,7 +41,7 @@ En revanche, plusieurs années ont passé et l'équipe et moi-même avons rencon
 3. Des soucis d'optimisation d'espace disque. Avec une VM par projet, l'espace disque utilisé peut monter assez vite (~160 Go utilisé après 3 ans sans nettoyage).
 4. Des problèmes de consommation CPU / RAM, faire tourner une ou plusieurs VM, avec PhpStorm, avec Google Chrome, etc... le tout en même temps, ce n'est pas donné à tout le monde. Il faut avoir une
    très bonne machine capable d'encaisser la charge.
-6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, ...), ça se fait automatiquement au boot de la VM, mais si on
+6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, ...), ça se fait automatiquement au boot de la VM, mais bon...
 5. Les machines virtuelles ne seront pas utilisables sur les nouveaux Mac tournant sour CPU ARM, [Tristan Bessoussa](https://twitter.com/sf_tristanb) en parle très bien sur [son article](https://devops-life.com/blog/2021/04/28/un-environnement-de-developpement-sain-en-2021-hello-docker-goodbye-machines-virtuelles/).
 
 ### Problèmes applicatifs
