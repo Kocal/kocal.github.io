@@ -25,7 +25,7 @@ Pour cela, on utilise :
 
 En revanche, plusieurs années ont passé et l'équipe et moi-même avons rencontré plusieurs problèmes.
 
-## La grande liste de problèmes avec les machines virtuelles
+## Les très nombreux problèmes avec les machines virtuelles
 
 ### Problèmes systèmes
 
@@ -33,19 +33,18 @@ En revanche, plusieurs années ont passé et l'équipe et moi-même avons rencon
    VM) [ne fonctionne pas](https://github.com/vagrant-landrush/landrush/issues/342). On doit manuellement ajouter une entrée dans notre `/etc/hosts`.
 2. Il y a des versions de VirtualBox qui ne fonctionnent pas. Dès que je trouvais une version qui fonctionnait parfaitement (ex : `6.1.16` pour Ubuntu 20.10), je désactivais les mises à
    jour via `echo "virtualbox-6.1 hold" | sudo dpkg --set-selections`, dans la crainte qu'une mise à jour ne fasse plus fonctionner les VM.S
-3. Des problèmes d'espace disque. Avec une VM par projet, l'espace disque utilisé peut monter assez vite (~160 Go utilisé après 3 ans sans nettoyage).
+3. Des soucis d'optimisation d'espace disque. Avec une VM par projet, l'espace disque utilisé peut monter assez vite (~160 Go utilisé après 3 ans sans nettoyage).
 4. Des problèmes de consommation CPU / RAM, faire tourner une ou plusieurs VM, avec PhpStorm, avec Google Chrome, etc... le tout en même temps, ce n'est pas donné à tout le monde. Il faut avoir une
    très bonne machine capable d'encaisser la charge.
-5. qsd
+6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, ...), ça se fait automatiquement au boot de la VM, mais si on
+5. Les machines virtuelles ne seront pas utilisables sur les nouveaux Mac tournant sour CPU ARM, [Tristan Bessoussa](https://twitter.com/sf_tristanb) en parle très bien sur [son article](https://devops-life.com/blog/2021/04/28/un-environnement-de-developpement-sain-en-2021-hello-docker-goodbye-machines-virtuelles/).
 
 ### Problèmes applicatifs
 
-5. Le _watching_ de fichiers (le fait d'observer les modifications sur des fichiers en temps réel) qui ne fonctionne pas à cause de l'utilisation de NFS :
-    - faire fonctionner le mode watch et dev-server de webpack, grâce au [polling](https://webpack.js.org/configuration/watch/#watchoptionspoll)
-    - faire fonctionner le mode watch de TailwindCSS JIT grâce à `CHOKIDAR_USEPOLLING=1` ([discussion GitHub](https://github.com/tailwindlabs/tailwindcss/discussions/4024))
-6. Il y a des fichiers importants qu'il faut importer dans la VM (`~/.ssh/config`, `~/.composer/auth.json`, `~/.gitconfig`, ...), ça se fait automatiquement au boot de la VM, mais si on
-   pouvait éviter...
-7. Pour nos git hooks ou tests Cypress (tout ce qui peut être lancé dans et en dehors de la VM en fait), il fallait passer par un petit script `vagrant-wrapper.sh` pour s'assurer que nos commandes
+7. Le _watching_ de fichiers (le fait d'observer les modifications sur des fichiers en temps réel) qui ne fonctionne pas correctement à cause de l'utilisation de NFS :
+    - pour faire fonctionner le dev-server de webpack, on a dû configurer le [_polling_](https://webpack.js.org/configuration/watch/#watchoptionspoll)
+    - pour faire fonctionner lre watch de TailwindCSS, on a également dû configure le polling via `CHOKIDAR_USEPOLLING=1` ([discussion GitHub](https://github.com/tailwindlabs/tailwindcss/discussions/4024))
+8. Pour nos git hooks ou tests Cypress (tout ce qui peut être lancé dans et en dehors de la VM en fait), il fallait passer par un petit script `vagrant-wrapper.sh` pour s'assurer que nos commandes
    soient bien exécutées dans la VM :
 
 ```shell
@@ -68,7 +67,7 @@ vagrant_wrapper() {
 vagrant_wrapper $@
 ```
 
-8. Si on utilisait un certificat HTTPS local (ex : généré avec [mkcert](https://github.com/FiloSottile/mkcert)), il fallait relancer nginx après que la partition NFS (contenant notre certificat HTTPS)
+9. Si on utilisait un certificat HTTPS local (ex : généré avec [mkcert](https://github.com/FiloSottile/mkcert)), il fallait relancer nginx après que la partition NFS (contenant notre certificat HTTPS)
    soit montée, sinon nginx ne se lançait pas car certificat HTTPS introuvable :
 
 ```ruby
@@ -82,7 +81,7 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-9. Si l'un de nos projets dépend d'un autre (ex : projet **A** qui utilise l'API du projet **B** et qui est en HTTPS), alors il fallait importer le certificat racine de mkcert dans la VM (cette
+10. Si l'un de nos projets dépend d'un autre (ex : projet **A** qui utilise l'API du projet **B** et qui est en HTTPS), alors il fallait importer le certificat racine de mkcert dans la VM (cette
    solution n'a été testée que sous Debian/Ubuntu, ne fonctionne sans doute pas sous macOS) :
 
 ```ruby
@@ -108,11 +107,11 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-### Des performances abominables
+### Des performances en retrait
 
-10. L'installation initiale (via le provisioning Ansible) est très longue, ~15 minutes, tellement il y a de choses à installer et à configurer.
-11. La VM peut prendre plusieurs dizaines de secondes à boot.
-12. La partition NFS n'aide pas du tout, même si on a déjà réussi à diviser par 4 le temps des `yarn install` et `composer install` en utilisant cette configuration :
+11. L'installation initiale (via le provisioning Ansible) est très longue, environ 15 minutes, tellement il y a de choses à installer et à configurer.
+12. La VM peut prendre plusieurs dizaines de secondes à boot.
+13. La partition NFS n'aide pas du tout, même si on a déjà réussi à diviser par 4 le temps des `yarn install` et `composer install` en utilisant cette configuration :
 
 ```ruby
 Vagrant.configure(2) do |config|
@@ -124,12 +123,9 @@ Vagrant.configure(2) do |config|
 end
 ```
 
-13. Sur notre plus gros (et ancien) projet, notre CMS maison, certaines pages peuvent mettre jusqu'à 10 secondes ou **beaucoup plus** pour s'afficher, c'est une horreur comme expérience développeur et
-    ça casse la vélocité.
-
 ### tl;dr
 
-Beaucoup trop de problèmes, beaucoup trop de tweaks et temps investi pour outrepasser ces derniers.
+Trop de problèmes de lenteur, trop de problèmes nécessitant des tweaks et du temps investi pour les outrepasser...
 
 ## Analyses et réflexions
 
@@ -139,7 +135,7 @@ Pour récapituler :
 - ils sont tous basés sur du PHP (mais avec des versions différentes)
 - certains ont besoin de Node.js (également avec des versions différentes) pour build des assets via [webpack Encore](https://github.com/symfony/webpack-encore)
 - certains ont besoin d'une base de données MySQL, MariaDB ou PostgreSQL (encore avec des versions différentes aussi)
-- certains ont besoin de Redis (pour la mise en cache et stocker des sessions PHP)
+- certains ont besoin de Redis
 
 ### Réflexions
 
@@ -244,7 +240,7 @@ Si c'est le cas, félicitations ! Le binaire `symfony` a correctement détecté 
 
 ## En résumé
 
-En résumé, notre nouvelle stack de développement consiste en :
+En résumé, que faut-il pour bénéficier de ce nouvel environnement de développement ?
 - Avoir PHP installé localement
 - Avoir Node.js installé localement (ou non)
 - Utiliser Docker pour les bases de données et Redis
@@ -294,7 +290,26 @@ Pour mettre à jour la recipe, simplement lancer un `manala up` :tada:.
 
 Il ne me faut pas plus de 2 minutes pour mettre à jour la recipe sur 4 ou 5 projets, c'est un vrai gain de temps considérable !
 
-### Intégration avec le CI
+**Bonus :** voir [Mise en place de l'environnement de développement en ~1 minute](#mise-en-place-de-l-environnement-de-developpement-en-1-minute) pour la mise en place et utilisation 
+de la recipe Manala `yprox.app-docker`.
+
+### Mise en place de l'environnement de développement en ~1 minute
+
+Sur un projet existant avec du PHP, Node.js, PostgreSQL et Redis :
+- installation de la [recipe Manala `yprox.app-docker`](https://github.com/Yproximite/manala-recipes/tree/main/yprox.app-docker)
+- migration du Makefile pour utiliser `make setup` et les `$(symfony)`
+- création des containers Docker
+- installation de l'application
+
+Le tout en **en ~1 minute** :heart_eyes:
+
+<video style="max-width: 100%" controls>
+  <source src="./2021-04-26-migration-stack-developpement-assets/manala-init.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video> 
+
+
+### Intégration avec le CI ?
 
 Puisqu'on a :
 
