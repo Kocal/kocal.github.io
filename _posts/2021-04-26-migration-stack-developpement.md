@@ -10,6 +10,11 @@ date: 2021-04-26
 summary: Pourquoi et comment migrer des machines virtuelles à de l'hybride et containers Docker.
 ---
 
+::: tip
+Il existe une version de cet article moins technique et plus orientée développeurs macOS écrite par [Tristan Bessoussa](https://twitter.com/sf_tristanb),
+voir [Un environnement de développement sain en 2021. Bonjour Docker, bye machines virtuelles](https://devops-life.com/blog/2021/04/28/un-environnement-de-developpement-sain-en-2021-hello-docker-goodbye-machines-virtuelles/).
+:::
+
 Chez [yProximité](https://www.y-proximite.fr/), agence web, on utilise les machines virtuelles depuis plusieurs années comme stack de développement sur tous nos différents projets web, afin de mettre
 un place un environnement de développement complet avec un serveur web nginx, PHP, Node.js, une base de données et Redis.
 
