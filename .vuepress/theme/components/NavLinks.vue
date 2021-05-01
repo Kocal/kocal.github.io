@@ -23,6 +23,7 @@
     <div class="nav-item" style="line-height: normal">
       <a href="/rss.xml">
         <RssIcon />
+        <span class="sr-only">Flux RSS</span>
       </a>
     </div>
   </nav>
