@@ -21,6 +21,12 @@ module.exports = {
       gtag('config', 'G-Z8KN175TJZ');`,
     ]],
   ],
+  plugins: [
+    ['@vuepress/pwa', {
+      serviceWorker: true,
+      updatePopup: true
+    }]
+  ],
   themeConfig: {
     repo: 'Kocal/blog',
     docsBranch: 'main',

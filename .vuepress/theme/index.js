@@ -38,7 +38,6 @@ module.exports = {
         clientSecret: process.env.VSSUE_CLIENT_SECRET || '<secret key>',
       }
     }],
-    '@vuepress/plugin-nprogress',
     ['@vuepress/medium-zoom', true],
     'seo',
   ],
