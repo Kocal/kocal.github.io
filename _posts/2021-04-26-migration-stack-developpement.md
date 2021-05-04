@@ -644,9 +644,12 @@ jobs:
         if: ${{ env.IS_DEPENDABOT == 'true' || github.event.pull_request.draft }}
         uses: cypress-io/github-action@v2
 
-      - name: Auto approve (for Dependabot)
-        if: ${{ env.IS_DEPENDABOT == 'true' && success() }}
-        uses: hmarr/auto-approve-action@v2.0.0
+  auto_approve:
+    runs-on: ubuntu-latest
+    needs: [php, javascript, cypress]
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - uses: hmarr/auto-approve-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
