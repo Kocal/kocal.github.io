@@ -12,10 +12,16 @@ body .social-share {
 }
 
 // Code
-.theme-default-content pre,
-.theme-default-content pre[class*="language-"]
-{
-  max-height: 450px;
+.theme-default-content {
+  pre,
+  pre[class*="language-"]
+  {
+    max-height: 450px;
+  }
+
+  code .token.inserted {
+    color: #0d9efd;
+  }
 }
 
 div[class*="language-"]::before {
