@@ -39,6 +39,12 @@ module.exports = {
       }
     }],
     ['@vuepress/medium-zoom', true],
+    ['@vuepress/last-updated', {
+      // See https://github.com/lorisleiva/vuepress-plugin-seo/issues/9#issuecomment-832951595
+      transformer(timestamp) {
+        return timestamp;
+      }
+    }],
     'seo',
   ],
 
