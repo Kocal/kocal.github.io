@@ -1,4 +1,5 @@
 ---
+lang: "fr"
 title: Migration de notre stack de développement vers Docker
 tags:
 - virtual machine
