@@ -37,11 +37,15 @@ export default {
     date: {
       type: String,
     },
+    lang: {
+      type: String,
+    },
   },
   computed: {
     resolvedDate() {
       return dayjs
           .utc(this.date)
+          .locale(this.lang)
           .format(this.$themeConfig.dateFormat || 'ddd MMM DD YYYY');
     },
     resolvedTags() {

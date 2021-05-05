@@ -74,5 +74,7 @@ module.exports = {
     if (pageCtx.frontmatter.summary) {
       pageCtx.frontmatter.description = pageCtx.frontmatter.summary;
     }
+
+    pageCtx.frontmatter.lang = pageCtx.frontmatter.lang || 'en';
   },
 };

@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/en';
 import dayjsPluginUTC from 'dayjs/plugin/utc';
 import dayjsPluginLocalizedFormat from 'dayjs/plugin/localizedFormat';
 

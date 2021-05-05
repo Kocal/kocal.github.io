@@ -12,6 +12,7 @@
               :author="$frontmatter.author"
               :date="$frontmatter.date"
               :location="$frontmatter.location"
+              :lang="$frontmatter.lang"
           />
         </header>
 

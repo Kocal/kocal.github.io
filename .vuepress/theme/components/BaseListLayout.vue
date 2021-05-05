@@ -33,6 +33,7 @@
             <PostMeta
                 :tags="page.frontmatter.tags"
                 :date="page.frontmatter.date"
+                :lang="page.frontmatter.lang"
             />
           </footer>
         </article>
