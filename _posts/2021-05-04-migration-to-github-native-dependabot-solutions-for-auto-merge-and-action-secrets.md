@@ -10,7 +10,7 @@ summary: Solutions for re-enabling auto-merging and secrets Action after migrati
 
 ## The end of Dependabot Preview is near
 
-Dependabot Preview ([dependabot.com](https://dependabot.com/)) - which [was acquired by GitHub](https://dependabot.com/blog/hello-github/) on May 23rd, 2021 - will be shut down on August 3rd, 2021
+Dependabot Preview ([dependabot.com](https://dependabot.com/)) - which [was acquired by GitHub](https://dependabot.com/blog/hello-github/) on May 23rd, 2019 - will be shut down on August 3rd, 2021
 in favor of [the GitHub-native Dependabot](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically).
 
 One week ago, we started to see many pull requests from Dependabot across our organization's repositories:
