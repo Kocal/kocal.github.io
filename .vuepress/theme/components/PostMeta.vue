@@ -1,19 +1,24 @@
 <template>
   <div class="ui-post-metas">
     <div v-if="date" class="ui-post-meta ui-post-date">
-      <ClockIcon size="16" class="ui-post-meta-icon" />
+      <div>
+        <ClockIcon size="18" class="ui-post-meta-icon" />
+      </div>
       <time pubdate itemprop="datePublished" :datetime="date">
         {{ resolvedDate }}
       </time>
     </div>
 
-    <div v-if="tags" class="ui-post-meta ui-post-tag" itemprop="keywords">
-      <TagIcon size="16" class="ui-post-meta-icon" />
+    <div v-if="tags" class="ui-post-meta ui-post-tags" itemprop="keywords">
+      <div>
+        <TagIcon size="18" class="ui-post-meta-icon" />
+      </div>
       <div>
         <router-link
             v-for="tag in resolvedTags"
             :key="tag"
             :to="'/tag/' + tag"
+            class="ui-post-tag"
         >
           {{ tag }}
         </router-link>
@@ -57,6 +62,8 @@ export default {
 </script>
 
 <style lang="stylus">
+$tagPadding = 2px;
+
 .ui-post-metas {
   display: flex;
   font-size: 14px
@@ -69,5 +76,36 @@ export default {
 
 .ui-post-meta-icon {
   margin-right: 4px;
+}
+
+.ui-post-tag {
+  padding: $tagPadding;
+}
+
+$tagsMarginBottom = -10px;
+@media (max-width: $MQMobileNarrow) {
+
+  .ui-post-metas {
+    display: block;
+    font-size: 15px
+  }
+
+  .ui-post-meta {
+    margin-right: 0;
+
+    & + & {
+      margin-top: 10px;
+    }
+  }
+
+  .ui-post-tags {
+    margin-bottom: $tagsMarginBottom;
+  }
+
+  .ui-post-tag {
+    display: inline-block;
+    margin-top: - $tagPadding;
+    margin-bottom: - $tagsMarginBottom;
+  }
 }
 </style>

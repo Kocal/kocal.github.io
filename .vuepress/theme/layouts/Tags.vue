@@ -16,6 +16,7 @@
 
 <style scoped lang="stylus">
 .tag {
+  display inline-block
   border: 1px solid $accentColor;
   text-decoration: none !important;
   padding: 8px 12px;

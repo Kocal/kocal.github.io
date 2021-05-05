@@ -56,6 +56,8 @@ module.exports = {
       pageCtx.frontmatter.home = true;
       pageCtx.frontmatter.title = 'Homepage';
       pageCtx.frontmatter.layout = 'Homepage';
+    } else if (pageCtx.path.substr(0, 5) === '/tag/') {
+      pageCtx.frontmatter.sidebar = false;
     }
 
     const strippedContent = pageCtx._strippedContent;
