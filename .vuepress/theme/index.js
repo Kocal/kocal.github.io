@@ -28,6 +28,9 @@ module.exports = {
       },
       feed: {
         canonical_base: 'https://hugo.alliau.me',
+        sort: function(entries) {
+          return [...entries].reverse();
+        },
       },
       comment: {
         service: 'vssue',
@@ -36,14 +39,14 @@ module.exports = {
         repo: "blog",
         clientId: "114b1045fc6a5b2d1338",
         clientSecret: process.env.VSSUE_CLIENT_SECRET || '<secret key>',
-      }
+      },
     }],
     ['@vuepress/medium-zoom', true],
     ['@vuepress/last-updated', {
       // See https://github.com/lorisleiva/vuepress-plugin-seo/issues/9#issuecomment-832951595
       transformer(timestamp) {
         return timestamp;
-      }
+      },
     }],
     'seo',
   ],
