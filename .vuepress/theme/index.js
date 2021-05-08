@@ -29,7 +29,8 @@ module.exports = {
       feed: {
         canonical_base: 'https://hugo.alliau.me',
         sort: function(entries) {
-          return [...entries].reverse();
+          // sort entries ASC by lastUpdated date, but reverse them for RSS clients
+          return [...entries].sort((a, b) => a.frontmatter.date > b.frontmatter.date).reverse();
         },
       },
       comment: {
