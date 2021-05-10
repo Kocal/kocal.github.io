@@ -49,7 +49,7 @@ En revanche, plusieurs années ont passé et l'équipe et moi-même avons rencon
 
 7. Le _watching_ de fichiers (le fait d'observer les modifications sur des fichiers en temps réel) qui ne fonctionne pas correctement à cause de l'utilisation de NFS :
     - pour faire fonctionner le dev-server de webpack, on a dû configurer le [_polling_](https://webpack.js.org/configuration/watch/#watchoptionspoll)
-    - pour faire fonctionner lre watch de TailwindCSS, on a également dû configure le polling via `CHOKIDAR_USEPOLLING=1` ([discussion GitHub](https://github.com/tailwindlabs/tailwindcss/discussions/4024))
+    - pour faire fonctionner lre watch de TailwindCSS, on a également dû configurer le polling via `CHOKIDAR_USEPOLLING=1` ([discussion GitHub](https://github.com/tailwindlabs/tailwindcss/discussions/4024))
 8. Pour nos git hooks ou tests Cypress (tout ce qui peut être lancé dans et en dehors de la VM en fait), il fallait passer par un petit script `vagrant-wrapper.sh` pour s'assurer que nos commandes
    soient bien exécutées dans la VM :
 
@@ -74,7 +74,7 @@ vagrant_wrapper $@
 ```
 
 9. Si on utilisait un certificat HTTPS local (ex : généré avec [mkcert](https://github.com/FiloSottile/mkcert)), il fallait relancer nginx après que la partition NFS (contenant notre certificat HTTPS)
-   soit montée, sinon nginx ne se lançait pas car certificat HTTPS introuvable :
+   soit montée, sinon nginx ne se lançait pas car le certificat HTTPS était introuvable :
 
 ```ruby
 Vagrant.configure(2) do |config|
@@ -167,7 +167,7 @@ Avec ce constat, je me suis dit qu'on pouvait tenter une stack hybride :
 
 ## Symfony CLI :sparkles:
 
-[Symfony CLI](https://github.com/symfony/cli) est un outil écrit en Go et qui a notamments remplacé l'ancien [Symfony WebServerBundle](https://github.com/symfony/web-server-bundle). 
+[Symfony CLI](https://github.com/symfony/cli) est un outil écrit en Go et qui a notamment remplacé l'ancien [Symfony WebServerBundle](https://github.com/symfony/web-server-bundle). 
 On l'utilise déjà sur nos CI pour lancer un serveur web pour nos tests E2E avec [Cypress](https://www.cypress.io/).
 
 Mais ce n'est pas tout. Symfony CLI est un outil surboosté aux vitamines avec d'incroyables fonctionnalités permettant de régler plusieurs problématiques : 
