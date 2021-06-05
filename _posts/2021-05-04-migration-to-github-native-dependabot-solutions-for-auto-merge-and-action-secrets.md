@@ -43,6 +43,18 @@ an access token with write access for merging (and auto-approving if needed), wh
 
 ## Re-enable auto-merging (with auto-approve)
 
+::: warning EDIT: 5st june 2021
+Dependabot recently released a GitHub Action [dependabot/fetch-metadata](https://github.com/dependabot/fetch-metadata) which can be used to get metadata about dependencies update. 
+
+With it, you can easily know about:
+- the dependency name
+- the type of dependency (production or development)
+- the type of update (`major`, `minor`, ...)
+
+For the auto-approve and auto-merge, it seems that you can use [the GitHub CLI `gh`](https://github.com/cli/cli) as described in [dependabot/fetch-metadata](https://github.com/dependabot/fetch-metadata)'s 
+README.
+:::
+
 So, how can we re-enable auto-merging Dependabot pull requests?
 
 The solution I've used has the following features:
